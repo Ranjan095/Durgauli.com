@@ -2,7 +2,15 @@
 "use client";
 import AddWorkerModal from "@/components/AddWorkerModal/AddWorkerModal";
 import Modal from "@/components/Modal/Modal";
-import { ArrowLeft, ArrowRight, Plus } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Download,
+  Heart,
+  Loader2,
+  Loader2Icon,
+  Plus,
+} from "lucide-react";
 import React, { useState } from "react";
 
 const Dashbord = () => {

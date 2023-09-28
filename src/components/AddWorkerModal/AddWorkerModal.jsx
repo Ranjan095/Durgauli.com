@@ -176,7 +176,8 @@ const AddWorkerModal = ({ isOpen, setIsOpen }) => {
                     type="submit"
                     className={`inline-flex w-full items-center bg-pink-500 justify-center rounded-md  px-3.5 py-2 font-semibold leading-7 text-white hover:bg-pink-400`}
                   >
-                    <Loader2 className="animate-spin" />
+                    <Loader2 className="animate-spin mr-3" />
+                    Processing...
                   </button>
                 ) : (
                   <button
