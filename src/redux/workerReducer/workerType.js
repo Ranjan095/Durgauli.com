@@ -1,0 +1,7 @@
+/** @format */
+
+export let GET_WORKER_REQUEST = "GET_WORKER_REQUEST";
+
+export let GET_WORKER_SUCCESS = "GET_WORKER_SUCCESS";
+
+export let GET_WORKER_ERROR = "GET_WORKER_ERROR";

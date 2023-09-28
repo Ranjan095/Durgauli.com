@@ -1,15 +1,48 @@
 /** @format */
-
-import React from "react";
+"use client";
+import {
+  GET_WORKER_ERROR,
+  GET_WORKER_REQUEST,
+  GET_WORKER_SUCCESS,
+} from "@/redux/workerReducer/workerType";
+import axios from "axios";
+import { Loader, Loader2 } from "lucide-react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function About() {
+  let { workers, isLoading, isError } = useSelector(
+    (store) => store.workerReducer
+  );
+  // console.log(workers, isLoading, isError);
+
+  let dispatch = useDispatch();
+
+  let getData = () => {
+    dispatch({ type: GET_WORKER_REQUEST });
+    axios
+      .get("/api/workers")
+      .then((res) => {
+        // console.log(res.data);
+        dispatch({ type: GET_WORKER_SUCCESS, payload: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({ type: GET_WORKER_ERROR });
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   let mainWorker = [
     { name: "श्री राम सागर यादव", post: "महासचिव", disc: "", pic: "" },
-    { name: "श्री राम सेवक यादव", post: "उप महासचिव ", disc: "", pic: "" },
+    { name: "श्री राम सेवक यादव", post: "उप महासचिव", disc: "", pic: "" },
     { name: "श्री मोद नारायण मिश्र", post: "अध्यक्ष ", disc: "", pic: "" },
     { name: "श्री गंगा शरण कामत", post: "उपाध्य्क्ष", disc: "", pic: "" },
-    { name: "श्री जटाशंकर चौधरी  ", post: "पूजारी", disc: "", pic: "" },
-    { name: "श्री संगीत झा ", post: "सहायक", disc: "", pic: "" },
+    { name: "श्री जटाशंकर चौधरी", post: "पूजारी", disc: "", pic: "" },
+    { name: "श्री संगीत झा", post: "सहायक", disc: "", pic: "" },
     { name: "श्री बैंजू कुमार यादव", post: "सहायक सचिव", disc: "", pic: "" },
     { name: "श्री गंगा शरण कामत", post: "कोषाध्यक्ष", disc: "", pic: "" },
     {
@@ -22,7 +55,11 @@ export default function About() {
     { name: "विपीन कुमार झा", post: "सहायक कोषाध्यक्ष", disc: "", pic: "" },
   ];
 
-  return (
+  return isLoading ? (
+    <div className="flex justify-center items-center text-center h-screen">
+      <Loader className="animate-spin "  />
+    </div>
+  ) : (
     <div className="mx-auto max-w-7xl px-2 lg:px-0">
       <div className="mx-auto max-w-3xl md:text-center">
         <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl lg:leading-tight">
@@ -40,14 +77,17 @@ export default function About() {
             key={i}
             className="mx-auto w-[300px] rounded-md border text-center"
           >
-            <img
-              src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
-              alt="Laptop"
-              className="h-[200px]  rounded-t-md object-cover"
-            />
+            <div className="flex justify-center ">
+              {" "}
+              <img
+                src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+                alt="Laptop"
+                className="h-[200px]  rounded-t-md object-cover"
+              />
+            </div>
             <div className="p-4">
               <h1 className="text-lg font-semibold">{ele.name}</h1>
-              <h6 className="mt-3 font-medium">{ele.post}</h6>
+              <h6 className="mt-3 font-semibold text-gray-500">{ele.post}</h6>
               <p className="mt-3 text-sm text-gray-600">{ele.disc}</p>
               {/* <div className="mt-4 flex flex-wrap">
                 <div className="w-auto p-1.5">
