@@ -13,7 +13,7 @@ const Modal = ({ isOpen, setIsOpen, children }) => {
   return (
     <div
       id="wraper"
-      className="fixed inset-0 bg-opacity-25 z-10 backdrop-blur-sm flex justify-center items-center"
+      className="fixed inset-0 bg-opacity-25 z-20 backdrop-blur-sm flex justify-center items-center"
       onClick={handleClose}
     >
       <div className="w-[400px] flex flex-col">

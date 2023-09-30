@@ -3,6 +3,22 @@
 import { WorkerModel } from "@/model/workerModel";
 import { NextResponse } from "next/server";
 
+// Api for get workers by id
+export async function GET(request, { params }) {
+  try {
+    let { worker_id } = params;
+    let worker = await WorkerModel.findOne({_id:worker_id});
+    return NextResponse.json(worker);
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error: error.message,
+      },
+      { status: 400 }
+    );
+  }
+}
+
 // Api for update workers
 export async function PATCH(request, { params }) {
   try {

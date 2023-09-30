@@ -58,7 +58,7 @@ export default function About() {
       <Loader className="motion-safe:animate-spin text-gray-500 " size={100} />
     </div>
   ) : (
-    <div className=" mt-14 lg:mt-16">
+    <div>
       <div className="my-2 lg:my-4  p-2 lg:p-4 bg-red-200 rounded-lg">
         <p className="text-center text-2xl font-bold ">
           श्री-श्री 108 दुर्गा पूजा समिति (दुर्गौली, जिला-मधुबनी){" "}
