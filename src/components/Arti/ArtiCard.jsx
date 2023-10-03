@@ -23,9 +23,9 @@ const ArtiCard = ({ title, description }) => {
         </div>
 
         {isOpen ? (
-          <ChevronDown className=" h-5 w-5 text-gray-500 animate-bounce" />
-        ) : (
           <ChevronUp className=" h-5 w-5 text-gray-500 animate-bounce" />
+        ) : (
+          <ChevronDown className=" h-5 w-5 text-gray-500 animate-bounce" />
         )}
       </button>
       <div className="px-2 md:px3 pb-5 sm:pb-4">
