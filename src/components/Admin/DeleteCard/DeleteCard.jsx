@@ -3,6 +3,8 @@
 import axios from "axios";
 import { Loader2, Trash2 } from "lucide-react";
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const DeleteCard = ({ setModalOpen, id }) => {
   let [isLoading, setIsLoading] = useState(false);
@@ -15,61 +17,94 @@ const DeleteCard = ({ setModalOpen, id }) => {
       .then((res) => {
         setIsLoading(false);
         console.log(res.data);
-        alert("Deleted successful!");
+
         setModalOpen(false);
+        toast.success("worker has been deleted !", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       })
       .catch((err) => {
         setIsLoading(false);
         console.log(err);
-        alert("Oops Somthing wnet worng!");
+        toast.error("Oops somthing went wrong !", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 
   return (
-    <div className="py-3 md:py-6 bg-green-400 rounded-lg">
-      <div className="text-center">
-        <p className="text-base font-semibold text-black flex justify-center">
-          {" "}
-          <Trash2 size={50} />
-        </p>
+    <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+      <div className="py-3 md:py-6 bg-green-400 rounded-lg">
+        <div className="text-center">
+          <p className="text-base font-semibold text-black flex justify-center">
+            {" "}
+            <Trash2 size={50} />
+          </p>
 
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-5xl">
-          Delete
-        </h1>
-        <p className="mt-4 text-base leading-7 text-gray-600">
-          Are you sure want to delete?
-        </p>
-        {!isLoading ? (
-          <div className="mt-4 flex items-center justify-center gap-x-3">
-            <button
-              onClick={() => setModalOpen(false)}
-              type="button"
-              className="inline-flex items-center rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-              {/* <ArrowLeft size={16} className="mr-2" />
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-5xl">
+            Delete
+          </h1>
+          <p className="mt-4 text-base leading-7 text-gray-600">
+            Are you sure want to delete?
+          </p>
+          {!isLoading ? (
+            <div className="mt-4 flex items-center justify-center gap-x-3">
+              <button
+                onClick={() => setModalOpen(false)}
+                type="button"
+                className="inline-flex items-center rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              >
+                {/* <ArrowLeft size={16} className="mr-2" />
           Go back */}
-              NO
-            </button>
+                NO
+              </button>
+              <button
+                onClick={handleDelete}
+                type="button"
+                className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              >
+                YES
+              </button>
+            </div>
+          ) : (
             <button
-              onClick={handleDelete}
-              type="button"
-              className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              disabled
+              type="submit"
+              className={`inline-flex bg-black items-center  justify-center rounded-md  px-3.5 py-2 font-semibold leading-7 text-white`}
             >
-              YES
+              <Loader2 className="animate-spin mr-3" />
+              Processing...
             </button>
-          </div>
-        ) : (
-          <button
-            disabled
-            type="submit"
-            className={`inline-flex bg-black items-center  justify-center rounded-md  px-3.5 py-2 font-semibold leading-7 text-white`}
-          >
-            <Loader2 className="animate-spin mr-3" />
-            Processing...
-          </button>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

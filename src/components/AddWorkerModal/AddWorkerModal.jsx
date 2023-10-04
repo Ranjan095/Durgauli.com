@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Modal from "../Modal/Modal";
 import { ArrowRight, Loader2 } from "lucide-react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 let obj = {
   name: "",
@@ -28,17 +30,47 @@ const AddWorkerModal = ({ isOpen, setIsOpen }) => {
         setIsLoading(false);
         setIsOpen(false);
         setFormData(obj);
-        alert("worker has been added successful");
+        toast.success("worker has been added !", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       })
       .catch((err) => {
         setIsLoading(false);
         console.log(err);
-        alert("Somthing went wrong!");
+        toast.error("Oops somthing went wrong !", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 
   return (
     <div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <div className="text-center">
           <p className="text-2xl font-semibold">Add Worker</p>

@@ -47,7 +47,7 @@ export default function ContactPage() {
             <div className="flex items-center justify-center">
               <div className="px-2 md:px-12">
                 <p className="text-2xl font-bold text-gray-900 md:text-4xl">
-                  Get in touch
+                  अपन सलाह जरूर दिय !
                 </p>
                 <p className="mt-4 text-lg text-red-600">
                   श्री-श्री 108 दुर्गा पूजा समिति (दुर्गौली, जिला-मधुबनी)
@@ -83,7 +83,7 @@ export default function ContactPage() {
                       />
                     </div>
                   </div>
-                  <div className="grid w-full  items-center gap-1.5">
+                  {/* <div className="grid w-full  items-center gap-1.5">
                     <label
                       className="text-sm font-medium leading-none text-gray-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       htmlFor="email"
@@ -96,7 +96,7 @@ export default function ContactPage() {
                       id="email"
                       placeholder="Email"
                     />
-                  </div>
+                  </div> */}
                   <div className="grid w-full  items-center gap-1.5">
                     <label
                       className="text-sm font-medium leading-none text-gray-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -119,10 +119,11 @@ export default function ContactPage() {
                       Message
                     </label>
                     <textarea
-                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
+                      className="flex row-span-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
                       id="message"
                       placeholder="Leave us a message"
-                      cols={3}
+                      // cols={20}
+                      rows={4}
                     />
                   </div>
                   <button

@@ -61,14 +61,15 @@ export default function About() {
     <div>
       <div className="my-2 lg:my-4  p-2 lg:p-4 bg-red-200 rounded-lg">
         <p className="text-center text-2xl font-bold ">
-          श्री-श्री 108 दुर्गा पूजा समिति (दुर्गौली, जिला-मधुबनी){" "}
+          श्री-श्री 108 दुर्गा पूजा समिति{" "}
         </p>
-        <p className="text-center text-2xl font-semibold text-gray-500 ">
+        <p className="text-center text-2xl font-bold ">( दुर्गौली ) </p>
+        {/* <p className="text-center text-2xl font-semibold text-gray-500 ">
           स्थापित - 1975 ईo{" "}
-        </p>
-        <p className="text-center text-2xl font-semibold text-gray-500 ">
+        </p> */}
+        {/* <p className="text-center text-2xl font-semibold text-gray-500 ">
           {+currentYear - 1974} सम वार्षिक समारोह - {+currentYear}
-        </p>
+        </p> */}
       </div>
       <Executive />
       <PujaDepartment />
