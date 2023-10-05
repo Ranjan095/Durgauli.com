@@ -42,7 +42,7 @@ export default function NavBar() {
   };
 
   return arr.includes(pathname) ? null : (
-    <div className=" sticky top-0 w-full bg-pink-200  z-20">
+    <div className=" sticky top-0 w-full bg-white border-b-2   z-20">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <Link href={"/"}>
           <div className="inline-flex items-center space-x-2 p-1">
@@ -54,7 +54,7 @@ export default function NavBar() {
                 }
               />
             </span>
-            <span className="font-bold">माँ दुर्गा</span>
+            <span className="font-bold hover:text-red-700">माँ दुर्गा</span>
           </div>
         </Link>
         <div className="hidden md:block">
@@ -63,7 +63,7 @@ export default function NavBar() {
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className="text-sm font-bold text-gray-800 border px-3 py-2 rounded hover:text-red-700 "
+                  className="text-sm font-bold text-gray-800 px-3 py-2 rounded hover:text-red-700 hover:border "
                 >
                   {item.name}
                 </Link>

@@ -11,7 +11,7 @@ const menuItems = [
     name: "Home",
     href: "/",
   },
- 
+
   {
     name: "Dashbord",
     href: "/admin/dashbord",
@@ -46,7 +46,7 @@ export default function AdminNavBar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <Link href={"/admin"}>
           <div className="inline-flex items-center space-x-2 p-1">
-            <span className="font-bold">Admin</span>
+            <span className="font-bold hover:text-red-700">Admin</span>
           </div>
         </Link>
         {/*** NavBar for big screen  ***/}
@@ -56,7 +56,7 @@ export default function AdminNavBar() {
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className="text-sm font-semibold text-gray-800 border px-3 py-2 rounded border-black hover:text-gray-900"
+                  className="text-sm font-bold text-gray-800 px-3 py-2 rounded hover:text-red-700 hover:border "
                 >
                   {item.name}
                 </Link>

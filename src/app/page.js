@@ -88,20 +88,6 @@ export default function Home() {
         Work in progress...
       </h1> */}
       <div className=" text-center m-5 text-red-500 ">
-        {/* <Typewriter
-          options={{
-            strings: [
-              "सर्व मंगल मांगल्ये शिवे सर्वार्थ साधिके।",
-              "शरण्ये त्र्यम्बके गौरी नारायणी नमोस्तुते।।",
-              "या देवी सर्वभूतेषु शक्तिरूपेण संस्थिता।",
-              "नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नम:।",
-            ],
-            autoStart: true,
-            loop: true,
-            wrapperClassName: " font-semibold",
-            cursorClassName: "cursor text-2xl text-red-700",
-          }}
-        /> */}
         <p className=" font-bold">
           ॐ सर्वमंगल मांगल्ये शिवे सर्वार्थसाधिके। शरण्ये त्रयम्बके गौरी नारायणी
           नमोस्तुते।।
@@ -113,10 +99,6 @@ export default function Home() {
       </div>
 
       <div className="mx-auto mb-10 max-w-2xl text-center">
-        {/* <h1 className=" text-3xl font-bold  bg-yellow-300 p-2 my-4">
-          Work in progress...
-        </h1> */}
-
         <h1 className="text-2xl md:text-3xl font-bold  my-2 md:my-4">
           श्री-श्री 108 दुर्गा पूजा समिति
         </h1>
@@ -162,7 +144,7 @@ export default function Home() {
 
       <div className="flex justify-center overflow-hidden border border-gray-200 md:rounded-lg mb-2">
         <table className=" min-w-full divide-y divide-gray-200 ">
-          <thead className=" bg-red-400">
+          <thead className=" bg-red-300">
             <tr>
               <th className="px-4 py-3.5 text-sm font-bold ">दिनांक</th>
               <th className="px-12 py-3.5 text-sm font-bold ">पूजा</th>
@@ -188,10 +170,10 @@ export default function Home() {
           सांस्कृतिक कार्यक्रम (मनोरंजन)
         </h1>
         <table className=" min-w-full divide-y divide-gray-200 ">
-          <thead className=" bg-red-400">
+          <thead className=" bg-gray-300">
             <tr>
               <th className="px-4 py-3.5 text-sm font-bold ">दिनांक</th>
-              <th className="px-12 py-3.5 text-sm font-bold ">पूजा</th>
+              <th className="px-12 py-3.5 text-sm font-bold ">सांस्कृतिक कार्यक्रम</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
