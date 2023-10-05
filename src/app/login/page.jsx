@@ -6,15 +6,15 @@ import React, { useState } from "react";
 import { ArrowRight, Loader2 } from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 let obj = {
   email: "",
   password: "",
 };
 
-export default function SignInThree() {
+export default function Login() {
   let [input, setInput] = useState(obj);
   let [loading, setLoading] = useState(false);
 
@@ -29,39 +29,39 @@ export default function SignInThree() {
         // console.log(res.data);
 
         setLoading(false);
-        alert("login success !");
+        toast.success("Login success !", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        
         router.push("/admin");
-        // toast.success("Login success !", {
-        //   position: "top-center",
-        //   autoClose: 5000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        //   theme: "colored",
-        // });
       })
       .catch((err) => {
         setLoading(false);
-        console.log(err.response.data);
-        alert("login failed !");
-        // toast.error(err.response.data.error, {
-        //   position: "top-center",
-        //   autoClose: 5000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        //   theme: "colored",
-        // });
+        console.log(err);
+
+        toast.error(err.response.data.error, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 
   return (
     <section>
-      {/* <ToastContainer
+      <ToastContainer
         position="top-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -72,7 +72,7 @@ export default function SignInThree() {
         draggable
         pauseOnHover
         theme="colored"
-      /> */}
+      />
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
         <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
           <div className="mb-2 flex justify-center">
@@ -119,10 +119,6 @@ export default function SignInThree() {
                     }
                     disabled={false}
                     required={true}
-                    autoComplete="off"
-                    autoCorrect="off"
-                    autoCapitalize="off"
-                    spellCheck="false"
                     name="email"
                     value={input.email}
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
@@ -151,11 +147,12 @@ export default function SignInThree() {
                 </div>
                 <div className="mt-2">
                   <input
+                    required
                     value={input.password}
                     onChange={(e) =>
                       setInput({ ...input, password: e.target.value })
                     }
-                    className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="rflex h-10 w-full rounded-md boder border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="password"
                     placeholder="Password"
                   ></input>

@@ -24,9 +24,12 @@ export async function POST(request) {
     }
 
     if (user.password !== password) {
-      return NextResponse.json({
-        error: "Password is incorrect",
-      });
+      return NextResponse.json(
+        {
+          error: "Password is incorrect",
+        },
+        { status: 400 }
+      );
     }
 
     var token = jwt.sign(
