@@ -8,9 +8,7 @@ require("dotenv").config();
 
 connectDB();
 
-{
-  /** API for Login user **/
-}
+// API for Login user
 export async function POST(request) {
   try {
     let { email, password } = await request.json();
@@ -19,7 +17,7 @@ export async function POST(request) {
     if (!user) {
       return NextResponse.json(
         {
-          error: "this email is not registerd",
+          error: "this email is not registered",
         },
         { status: 400 }
       );
@@ -40,10 +38,22 @@ export async function POST(request) {
     );
 
     let response = NextResponse.json({
-      msg: "login successfull",
-      sucess: true,
+      msg: "login successful",
+      success: true,
     });
-    response.cookies.set("token", token, { httpOnly: true, expiresIn: "1d" });
+
+    // response.cookies.set(
+    //   "token",
+    //   token,
+    //   { httpOnly: true, expiresIn: 86400, sameSite: "none", secure: true, domain: ".durgauli.com" }
+    // );
+    response.cookies.set("token", token, {
+      httpOnly: true,
+      expiresIn: 86400,
+      sameSite: "none", // Add this line for cross-site context
+      secure: true, // Add this line for secure HTTPS connections
+    });
+
     return response;
   } catch (error) {
     return NextResponse.json(
