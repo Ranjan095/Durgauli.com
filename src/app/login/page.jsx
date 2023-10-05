@@ -6,8 +6,8 @@ import React, { useState } from "react";
 import { ArrowRight, Loader2 } from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 let obj = {
   email: "",
@@ -26,46 +26,42 @@ export default function SignInThree() {
     axios
       .post("/api/users/login", input)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
 
-        router.push("/admin");
         setLoading(false);
-        toast.success("Login success!x  ", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        alert("login success !");
+        router.push("/admin");
+        // toast.success("Login success !", {
+        //   position: "top-center",
+        //   autoClose: 5000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "colored",
+        // });
       })
       .catch((err) => {
         setLoading(false);
         console.log(err.response.data);
-        toast.error(err.response.data.error, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        alert("login failed !");
+        // toast.error(err.response.data.error, {
+        //   position: "top-center",
+        //   autoClose: 5000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "colored",
+        // });
       });
   };
 
   return (
     <section>
-      {/* <button
-        onClick={()=>{toast.success('login')}}
-        className={` inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80`}
-      >
-        Get started <ArrowRight className="ml-2" size={16} />
-      </button> */}
-      <ToastContainer
+      {/* <ToastContainer
         position="top-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -76,7 +72,7 @@ export default function SignInThree() {
         draggable
         pauseOnHover
         theme="colored"
-      />
+      /> */}
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
         <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
           <div className="mb-2 flex justify-center">
@@ -173,23 +169,6 @@ export default function SignInThree() {
                 >
                   {!loading ? " Get started" : "Loading..."}
                 </button>
-                {/* {loading ? (
-                  <button
-                    disabled
-                    type="submit"
-                    className={`inline-flex w-full items-center bg-pink-500 justify-center rounded-md  px-3.5 py-2 font-semibold leading-7 text-white hover:bg-pink-400`}
-                  >
-                    <Loader2 className="animate-spin mr-3" />
-                    Processing...
-                  </button>
-                ) : (
-                  <button
-                    type="submit"
-                    className={` inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80`}
-                  >
-                    Get started <ArrowRight className="ml-2" size={16} />
-                  </button>
-                )} */}
               </div>
             </div>
           </form>

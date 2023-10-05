@@ -26,7 +26,7 @@ export default function Home() {
     initialSlide: 0,
     autoplay: true,
     autoplaySpeed: 3000,
-    pauseOnHover: true,
+    pauseOnHover: false,
     responsive: [
       {
         breakpoint: 1024,

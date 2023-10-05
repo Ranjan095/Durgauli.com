@@ -40,7 +40,7 @@ export default function About() {
     axios
       .get("/api/workers")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         dispatch({ type: GET_WORKER_SUCCESS, payload: res.data });
       })
       .catch((err) => {
