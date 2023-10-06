@@ -8,6 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 
 let obj = {
   email: "",
@@ -39,7 +40,7 @@ export default function Login() {
           progress: undefined,
           theme: "colored",
         });
-        
+
         router.push("/admin");
       })
       .catch((err) => {
@@ -92,21 +93,21 @@ export default function Login() {
           <h2 className="text-center text-2xl font-bold leading-tight text-black">
             Sign in to your account
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600 ">
+          {/* <p className="mt-2 text-center text-sm text-gray-600 ">
             Don&apos;t have an account?{" "}
-            <a
+            <Link
               href="#"
               title=""
               className="font-semibold text-black transition-all duration-200 hover:underline"
             >
               Create a free account
-            </a>
-          </p>
+            </Link>
+          </p> */}
           <form onSubmit={handleSubmit} className="mt-8">
             <div className="space-y-5">
               <div>
                 <label
-                  htmlFor=""
+                  htmlFor="email"
                   className="text-base font-medium text-gray-900"
                 >
                   {" "}
@@ -119,10 +120,12 @@ export default function Login() {
                     }
                     disabled={false}
                     required={true}
+                    id="email"
                     name="email"
                     value={input.email}
-                    className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex h-10 w-full rounded-md border border-gray-500 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="email"
+                    autoComplete="email"
                     placeholder="Email"
                   ></input>
                 </div>
@@ -130,29 +133,32 @@ export default function Login() {
               <div>
                 <div className="flex items-center justify-between">
                   <label
-                    htmlFor=""
+                    htmlFor="password"
                     className="text-base font-medium text-gray-900"
                   >
                     {" "}
                     Password{" "}
                   </label>
-                  <a
+                  {/* <Link
                     href="#"
                     title=""
                     className="text-sm font-semibold text-black hover:underline"
                   >
                     {" "}
                     Forgot password?{" "}
-                  </a>
+                  </Link> */}
                 </div>
                 <div className="mt-2">
                   <input
+                    id="password"
+                    name="password"
                     required
+                    autoComplete="password"
                     value={input.password}
                     onChange={(e) =>
                       setInput({ ...input, password: e.target.value })
                     }
-                    className="rflex h-10 w-full rounded-md boder border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex h-10 w-full rounded-md border border-gray-500 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="password"
                     placeholder="Password"
                   ></input>
@@ -169,7 +175,7 @@ export default function Login() {
               </div>
             </div>
           </form>
-          <div className="mt-3 space-y-3">
+          {/* <div className="mt-3 space-y-3">
             <button
               type="button"
               className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
@@ -202,7 +208,7 @@ export default function Login() {
               </span>
               Sign in with Facebook
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

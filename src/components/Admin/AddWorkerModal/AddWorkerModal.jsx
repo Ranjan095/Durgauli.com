@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import Modal from "../Modal/Modal";
+import Modal from "../../Modal/Modal";
 import { ArrowRight, Loader2 } from "lucide-react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -30,36 +30,38 @@ const AddWorkerModal = ({ isOpen, setIsOpen }) => {
         setIsLoading(false);
         setIsOpen(false);
         setFormData(obj);
-        toast.success("worker has been added !", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        alert("worker has been added !");
+        // toast.success("worker has been added !", {
+        //   position: "top-center",
+        //   autoClose: 5000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "colored",
+        // });
       })
       .catch((err) => {
         setIsLoading(false);
         console.log(err);
-        toast.error("Oops somthing went wrong !", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        alert("Oops somthing went wrong !");
+        // toast.error("Oops somthing went wrong !", {
+        //   position: "top-center",
+        //   autoClose: 5000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "colored",
+        // });
       });
   };
 
   return (
     <div>
-      <ToastContainer
+      {/* <ToastContainer
         position="top-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -70,7 +72,7 @@ const AddWorkerModal = ({ isOpen, setIsOpen }) => {
         draggable
         pauseOnHover
         theme="colored"
-      />
+      /> */}
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <div className="text-center">
           <p className="text-2xl font-semibold">Add Worker</p>
