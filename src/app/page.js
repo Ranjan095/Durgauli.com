@@ -27,6 +27,7 @@ export default function Home() {
     autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: false,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1024,
@@ -98,7 +99,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="mx-auto mb-10 max-w-2xl text-center">
+      <div className="mx-auto mb-4 max-w-2xl text-center">
         <h1 className="text-2xl md:text-3xl font-bold  my-2 md:my-4">
           श्री-श्री 108 दुर्गा पूजा समिति
         </h1>
@@ -119,7 +120,7 @@ export default function Home() {
         />
       </div>
       {/*** slicer ***/}
-      <div className="mb-10">
+      <div className="mb-6">
         <Slider {...settings}>
           {arr.map((ele, i) => {
             return (
@@ -173,7 +174,9 @@ export default function Home() {
           <thead className=" bg-gray-300">
             <tr>
               <th className="px-4 py-3.5 text-sm font-bold ">दिनांक</th>
-              <th className="px-12 py-3.5 text-sm font-bold ">सांस्कृतिक कार्यक्रम</th>
+              <th className="px-12 py-3.5 text-sm font-bold ">
+                सांस्कृतिक कार्यक्रम
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
