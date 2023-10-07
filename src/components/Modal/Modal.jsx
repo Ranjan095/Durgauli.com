@@ -20,7 +20,7 @@ const Modal = ({ isOpen, setIsOpen, children }) => {
         <button onClick={() => setIsOpen(false)} className="place-self-end">
           <X />
         </button>
-        <div className="bg-pink-200 p-2 rounded">{children}</div>
+        <div className=" bg-indigo-200 p-2 rounded">{children}</div>
       </div>
     </div>
   );

@@ -1,9 +1,11 @@
 /** @format */
-
+// questionMark
+import questionMark from "../../../../public/images/questionMark.png";
 import React, { useState } from "react";
 import Modal from "../../Modal/Modal";
 import { ArrowRight, Loader2 } from "lucide-react";
 import axios from "axios";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,67 +19,59 @@ let obj = {
 
 const AddWorkerModal = ({ isOpen, setIsOpen }) => {
   let [formData, setFormData] = useState(obj);
+  let [imageFile, setImageFile] = useState("");
+  let [imagePreview, setImagePreview] = useState("");
+  let [lodingImage, setLoadingImage] = useState(false);
 
   let [isLoading, setIsLoading] = useState(false);
 
-  let handleSubmit = (e) => {
+  let handleUpload = async () => {
+    let data = new FormData();
+    data.append("file", imageFile);
+    data.append("upload_preset", "durgauli");
+    data.append("cloud_name", "ranjanyadav");
+
+    setLoadingImage(true);
+    await axios
+      .post("https://api.cloudinary.com/v1_1/ranjanyadav/image/upload", data)
+      .then((res) => {
+        setLoadingImage(false);
+        setImagePreview(res.data.url);
+        // console.log(res.data.url);
+      })
+      .catch((err) => {
+        setLoadingImage(false);
+        console.log(err);
+      });
+  };
+
+  let handleSubmit = async (e) => {
     e.preventDefault();
+
     setIsLoading(true);
     axios
-      .post("/api/workers", formData)
+      .post("/api/workers", { ...formData, image: imagePreview })
       .then((res) => {
         // console.log(res);
         setIsLoading(false);
         setIsOpen(false);
         setFormData(obj);
         alert("worker has been added !");
-        // toast.success("worker has been added !", {
-        //   position: "top-center",
-        //   autoClose: 5000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        //   theme: "colored",
-        // });
       })
       .catch((err) => {
         setIsLoading(false);
         console.log(err);
         alert("Oops somthing went wrong !");
-        // toast.error("Oops somthing went wrong !", {
-        //   position: "top-center",
-        //   autoClose: 5000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        //   theme: "colored",
-        // });
       });
   };
 
   return (
     <div>
-      {/* <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      /> */}
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <div className="text-center">
           <p className="text-2xl font-semibold">Add Worker</p>
-          <form onSubmit={handleSubmit} className="mt-3">
-            <div className="space-y-5">
+          <form onSubmit={handleSubmit} className="">
+            <div className="space-y-2 lg:space-y-3">
               <div>
                 <label
                   htmlFor="name"
@@ -86,14 +80,14 @@ const AddWorkerModal = ({ isOpen, setIsOpen }) => {
                   {" "}
                   Full Name{" "}
                 </label>
-                <div className="mt-2">
+                <div className="">
                   <input
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
                     }
                     required
-                    className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-1 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="text"
                     placeholder="Full Name"
                     id="name"
@@ -103,19 +97,45 @@ const AddWorkerModal = ({ isOpen, setIsOpen }) => {
               <div>
                 <label className="text-base font-medium text-gray-900">
                   {" "}
-                  Image URL{" "}
+                  Image file{" "}
                 </label>
-                <div className="mt-2">
+                <div className="">
                   <input
-                    value={formData.image}
-                    onChange={(e) =>
-                      setFormData({ ...formData, image: e.target.value })
-                    }
-                    className="flex h-10 w-full rounded-md border border-gray-300 bg-white   px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                    type="text"
+                    onChange={(e) => setImageFile(e.target.files[0])}
+                    className="flex w-full h-10 rounded-md border border-gray-300 bg-white pl-1 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    type="file"
                     placeholder="ImageURL"
-                    id="imageURL"
+                    id="imageFile"
                   ></input>
+                </div>
+                <div className=" flex justify-center items-center my-2 space-x-2">
+                  {imageFile && (
+                    <span
+                      className={`border border-black px-1 rounded h-6 ${
+                        imagePreview ? "bg-green-700" : "bg-red-700"
+                      }  text-white`}
+                      onClick={handleUpload}
+                    >
+                      {lodingImage ? (
+                        <Loader2 className="animate-spin mr-3" />
+                      ) : imagePreview ? (
+                        "Uploaded"
+                      ) : (
+                        "Upload"
+                      )}
+                    </span>
+                  )}
+                  <div className=" border border-black h-[40px] w-[40px] rounded bg-white ">
+                    <img
+                      className="h-full w-full"
+                      style={{ objectFit: "cover" }}
+                      loading="lazy"
+                      width="40"
+                      height="40"
+                      src={imagePreview || questionMark.src}
+                      alt=""
+                    />
+                  </div>
                 </div>
               </div>
               <div>
@@ -123,7 +143,7 @@ const AddWorkerModal = ({ isOpen, setIsOpen }) => {
                   {" "}
                   Mobile No{" "}
                 </label>
-                <div className="mt-2">
+                <div className="">
                   <input
                     value={formData.mobile}
                     onChange={(e) =>
@@ -142,7 +162,7 @@ const AddWorkerModal = ({ isOpen, setIsOpen }) => {
                     Category{" "}
                   </label>
                 </div>
-                <div className="mt-2">
+                <div className="">
                   <select
                     required
                     value={formData.category}
@@ -178,7 +198,7 @@ const AddWorkerModal = ({ isOpen, setIsOpen }) => {
                     Post{" "}
                   </label>
                 </div>
-                <div className="mt-2">
+                <div className="">
                   <select
                     required
                     value={formData.post}
@@ -208,7 +228,7 @@ const AddWorkerModal = ({ isOpen, setIsOpen }) => {
                   <button
                     disabled
                     type="submit"
-                    className={`inline-flex w-full items-center bg-pink-500 justify-center rounded-md  px-3.5 py-2 font-semibold leading-7 text-white hover:bg-pink-400`}
+                    className={`inline-flex w-full items-center bg-green-500 justify-center rounded-md  px-3.5 py-2 font-semibold leading-7 text-white hover:bg-pink-400`}
                   >
                     <Loader2 className="animate-spin mr-3" />
                     Processing...
@@ -216,7 +236,7 @@ const AddWorkerModal = ({ isOpen, setIsOpen }) => {
                 ) : (
                   <button
                     type="submit"
-                    className={`inline-flex w-full items-center bg-pink-500 justify-center rounded-md  px-3.5 py-2 font-semibold leading-7 text-white hover:bg-pink-400`}
+                    className={`inline-flex w-full items-center bg-green-500 justify-center rounded-md  px-3.5 py-2 font-semibold leading-7 text-white hover:bg-pink-400`}
                   >
                     Create Worker <ArrowRight className="ml-2" size={16} />
                   </button>

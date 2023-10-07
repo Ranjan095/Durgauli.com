@@ -1,6 +1,7 @@
 /** @format */
 
 import Modal from "@/components/Modal/Modal";
+import questionMark from "../../../../public/images/questionMark.png";
 import axios from "axios";
 import { ArrowRight, Loader2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
@@ -13,17 +14,43 @@ let obj = {
   post: "",
 };
 const EditWorker = ({ id, showEditModal, setShowEditModal }) => {
+  let { workers } = useSelector((store) => store.workerReducer);
   let [isLoading, setIsLoading] = useState(false);
   let [formData, setFormData] = useState(obj);
+  let [imageFile, setImageFile] = useState();
 
-  let { workers } = useSelector((store) => store.workerReducer);
+  let image = workers.find((item) => item._id === id).image;
+
+  let [imagePreview, setImagePreview] = useState(image);
+  let [lodingImage, setLoadingImage] = useState(false);
+
+  let handleUpload = async () => {
+    // console.log(imageFile)
+    let data = new FormData();
+    data.append("file", imageFile);
+    data.append("upload_preset", "durgauli");
+    data.append("cloud_name", "ranjanyadav");
+
+    setLoadingImage(true);
+    await axios
+      .post("https://api.cloudinary.com/v1_1/ranjanyadav/image/upload", data)
+      .then((res) => {
+        setLoadingImage(false);
+        setImagePreview(res.data.url);
+        // console.log(res.data.url);
+      })
+      .catch((err) => {
+        setLoadingImage(false);
+        console.log(err);
+      });
+  };
 
   let handleSubmit = (e) => {
     e.preventDefault();
     // console.log(formData);
     setIsLoading(true);
     axios
-      .patch(`/api/workers/${id}`, formData)
+      .patch(`/api/workers/${id}`, { ...formData, image: imagePreview })
       .then((res) => {
         // console.log(res);
         setIsLoading(false);
@@ -47,8 +74,8 @@ const EditWorker = ({ id, showEditModal, setShowEditModal }) => {
       <Modal isOpen={showEditModal} setIsOpen={setShowEditModal}>
         <div className="text-center ">
           <p className="text-2xl font-semibold">Edit Worker</p>
-          <form onSubmit={handleSubmit} className="mt-3">
-            <div className="space-y-5">
+          <form onSubmit={handleSubmit} className="">
+            <div className="space-y-2 lg:space-y-3">
               <div>
                 <label
                   htmlFor="name"
@@ -74,19 +101,45 @@ const EditWorker = ({ id, showEditModal, setShowEditModal }) => {
               <div>
                 <label className="text-base font-medium text-gray-900">
                   {" "}
-                  Image URL{" "}
+                  Image file{" "}
                 </label>
-                <div className="mt-2">
+                <div className="">
                   <input
-                    value={formData?.image || ""}
-                    onChange={(e) =>
-                      setFormData({ ...formData, image: e.target.value })
-                    }
-                    className="flex h-10 w-full rounded-md border border-gray-300 bg-white   px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                    type="text"
+                    onChange={(e) => setImageFile(e.target.files[0])}
+                    className="flex w-full h-10 rounded-md border border-gray-300 bg-white pl-1 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    type="file"
                     placeholder="ImageURL"
-                    id="imageURL"
+                    id="imageFile"
                   ></input>
+                </div>
+                <div className=" flex justify-center items-center my-2 space-x-2">
+                  {imageFile && (
+                    <span
+                      className={`border border-black px-1 rounded h-6 ${
+                        imagePreview ? "bg-green-700" : "bg-red-700"
+                      }  text-white`}
+                      onClick={handleUpload}
+                    >
+                      {lodingImage ? (
+                        <Loader2 className="animate-spin mr-3" />
+                      ) : imagePreview ? (
+                        "Uploaded"
+                      ) : (
+                        "Upload"
+                      )}
+                    </span>
+                  )}
+                  <div className=" border border-black h-[40px] w-[40px] rounded bg-white ">
+                    <img
+                      className="h-full w-full"
+                      style={{ objectFit: "cover" }}
+                      loading="lazy"
+                      width="40"
+                      height="40"
+                      src={imagePreview || questionMark.src}
+                      alt=""
+                    />
+                  </div>
                 </div>
               </div>
               <div>
