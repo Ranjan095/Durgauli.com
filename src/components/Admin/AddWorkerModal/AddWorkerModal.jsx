@@ -1,13 +1,14 @@
 /** @format */
 // questionMark
 import questionMark from "../../../../public/images/questionMark.png";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Modal from "../../Modal/Modal";
 import { ArrowRight, Loader2 } from "lucide-react";
 import axios from "axios";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { RefreshContext } from "@/context/refreshContext/refreshContex";
 
 let obj = {
   name: "",
@@ -24,6 +25,8 @@ const AddWorkerModal = ({ isOpen, setIsOpen }) => {
   let [lodingImage, setLoadingImage] = useState(false);
 
   let [isLoading, setIsLoading] = useState(false);
+
+  let { refreshComponent } = useContext(RefreshContext);
 
   let handleUpload = async () => {
     let data = new FormData();
@@ -56,6 +59,7 @@ const AddWorkerModal = ({ isOpen, setIsOpen }) => {
         setIsLoading(false);
         setIsOpen(false);
         setFormData(obj);
+        refreshComponent();
         alert("worker has been added !");
       })
       .catch((err) => {

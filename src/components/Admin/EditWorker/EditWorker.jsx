@@ -4,8 +4,9 @@ import Modal from "@/components/Modal/Modal";
 import questionMark from "../../../../public/images/questionMark.png";
 import axios from "axios";
 import { ArrowRight, Loader2 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { RefreshContext } from "@/context/refreshContext/refreshContex";
 let obj = {
   name: "",
   image: "",
@@ -23,6 +24,8 @@ const EditWorker = ({ id, showEditModal, setShowEditModal }) => {
 
   let [imagePreview, setImagePreview] = useState(image);
   let [lodingImage, setLoadingImage] = useState(false);
+
+  let { refreshComponent } = useContext(RefreshContext);
 
   let handleUpload = async () => {
     // console.log(imageFile)
@@ -56,6 +59,7 @@ const EditWorker = ({ id, showEditModal, setShowEditModal }) => {
         setIsLoading(false);
         setShowEditModal(false);
         alert("worker has been Updated successful");
+        refreshComponent();
       })
       .catch((err) => {
         setIsLoading(false);

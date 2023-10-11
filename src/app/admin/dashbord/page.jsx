@@ -3,6 +3,7 @@
 import AddWorkerModal from "@/components/Admin/AddWorkerModal/AddWorkerModal";
 import DeleteWorker from "@/components/Admin/DeleteWorker/DeleteWorker";
 import EditWorker from "@/components/Admin/EditWorker/EditWorker";
+import { RefreshContext } from "@/context/refreshContext/refreshContex";
 
 import {
   GET_WORKER_ERROR,
@@ -11,7 +12,7 @@ import {
 } from "@/redux/workerReducer/workerType";
 import axios from "axios";
 import { Loader, Pencil, Phone, Trash2 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Dashbord = () => {
@@ -27,6 +28,8 @@ const Dashbord = () => {
   );
 
   let dispatch = useDispatch();
+
+  let { refresh } = useContext(RefreshContext);
 
   let getData = () => {
     dispatch({ type: GET_WORKER_REQUEST });
@@ -55,7 +58,7 @@ const Dashbord = () => {
 
   useEffect(() => {
     getData();
-  }, [isOpen, showDeleteModal, showEditModal]);
+  }, [refresh]);
 
   return isLoading ? (
     <div className="flex justify-center items-center text-center h-screen">

@@ -1,11 +1,11 @@
 /** @format */
 
 "use client";
-
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { ArrowRight, Loader2 } from "lucide-react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
@@ -30,6 +30,7 @@ export default function Login() {
         // console.log(res.data);
 
         setLoading(false);
+        router.push("/admin");
         toast.success("Login success !", {
           position: "top-center",
           autoClose: 5000,
@@ -40,8 +41,6 @@ export default function Login() {
           progress: undefined,
           theme: "colored",
         });
-
-        router.push("/admin");
       })
       .catch((err) => {
         setLoading(false);

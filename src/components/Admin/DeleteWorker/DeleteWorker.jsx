@@ -1,14 +1,17 @@
 /** @format */
 
 import Modal from "@/components/Modal/Modal";
+import { RefreshContext } from "@/context/refreshContext/refreshContex";
 import axios from "axios";
 import { Loader2, Trash2 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const DeleteWorker = ({ id, showDeleteModal, setshowDeleteModal }) => {
   let [isLoading, setIsLoading] = useState(false);
+
+  let { refreshComponent } = useContext(RefreshContext);
 
   let handleDelete = () => {
     // console.log(id);
@@ -21,6 +24,7 @@ const DeleteWorker = ({ id, showDeleteModal, setshowDeleteModal }) => {
         // console.log(res.data);
 
         setshowDeleteModal(false);
+        refreshComponent();
         alert("worker has been deleted !");
         // toast.success("worker has been deleted !", {
         //   position: "top-center",
@@ -65,7 +69,7 @@ const DeleteWorker = ({ id, showDeleteModal, setshowDeleteModal }) => {
         theme="colored"
       /> */}
       <Modal isOpen={showDeleteModal} setIsOpen={setshowDeleteModal}>
-        <div className="py-3 md:py-6 bg-green-400 rounded-lg">
+        <div className="py-3 md:py-6 rounded-lg">
           <div className="text-center">
             <p className="text-base font-semibold text-black flex justify-center">
               {" "}
