@@ -25,49 +25,38 @@ const DeleteWorker = ({ id, showDeleteModal, setshowDeleteModal }) => {
 
         setshowDeleteModal(false);
         refreshComponent();
-        alert("worker has been deleted !");
-        // toast.success("worker has been deleted !", {
-        //   position: "top-center",
-        //   autoClose: 5000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        //   theme: "colored",
-        // });
+        // alert("worker has been deleted !");
+        toast.success("worker has been deleted !", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       })
       .catch((err) => {
         setIsLoading(false);
         console.log(err);
-        alert("Oops somthing went wrong !");
-        // toast.error("Oops somthing went wrong !", {
-        //   position: "top-center",
-        //   autoClose: 5000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        //   theme: "colored",
-        // });
+        // alert("Oops somthing went wrong !");
+        toast.error("Oops somthing went wrong !", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 
   return (
     <div>
-      {/* <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      /> */}
+     
       <Modal isOpen={showDeleteModal} setIsOpen={setshowDeleteModal}>
         <div className="py-3 md:py-6 rounded-lg">
           <div className="text-center">

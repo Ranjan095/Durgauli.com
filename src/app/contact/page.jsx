@@ -77,7 +77,7 @@ export default function ContactPage() {
       .catch((err) => {
         setInput(false);
         console.log(err);
-        toast.success(`Oops Somthing went wrong!`, {
+        toast.error(`Oops Somthing went wrong!`, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -93,18 +93,6 @@ export default function ContactPage() {
 
   return (
     <div>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
       <div className="mx-auto max-w-7xl px-4">
         <div className="mx-auto max-w-7xl py-12 md:py-24">
           <div className="grid items-center justify-items-center gap-x-4 gap-y-10 lg:grid-cols-2">

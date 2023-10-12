@@ -7,6 +7,7 @@ import { ArrowRight, Loader2 } from "lucide-react";
 import React, { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RefreshContext } from "@/context/refreshContext/refreshContex";
+import { toast } from "react-toastify";
 let obj = {
   name: "",
   image: "",
@@ -58,13 +59,33 @@ const EditWorker = ({ id, showEditModal, setShowEditModal }) => {
         // console.log(res);
         setIsLoading(false);
         setShowEditModal(false);
-        alert("worker has been Updated successful");
+        // alert("worker has been Updated successful");
+        toast.success("worker has been Updated successful !", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
         refreshComponent();
       })
       .catch((err) => {
         setIsLoading(false);
         console.log(err);
-        alert("Somthing went wrong!");
+        // alert("Somthing went wrong!");
+        toast.error("Somthing went wrong !", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 

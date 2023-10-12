@@ -60,12 +60,32 @@ const AddWorkerModal = ({ isOpen, setIsOpen }) => {
         setIsOpen(false);
         setFormData(obj);
         refreshComponent();
-        alert("worker has been added !");
+        // alert("worker has been added !");
+        toast.success("worker has been added !", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       })
       .catch((err) => {
         setIsLoading(false);
         console.log(err);
-        alert("Oops somthing went wrong !");
+        // alert("Oops somthing went wrong !");
+        toast.error("Oops somthing went wrong !", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 
