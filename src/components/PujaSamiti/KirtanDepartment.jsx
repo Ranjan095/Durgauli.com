@@ -43,7 +43,10 @@ const KirtanDepartment = () => {
                 </div>
                 <div className="p-4">
                   <h1 className="text-lg font-semibold">{ele.name}</h1>
-                  <h6 className="mt-3 font-semibold text-gray-500">
+                  <h6 className="mt-1 font-normal text-gray-500">
+                  {ele.category}
+                </h6>
+                  <h6 className="font-semibold text-gray-500">
                     {ele.post}
                   </h6>
                   {ele.mobile && (
