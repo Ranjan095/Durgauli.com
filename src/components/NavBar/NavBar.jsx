@@ -46,7 +46,7 @@ export default function NavBar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <Link href={"/"}>
           <div className="inline-flex items-center space-x-2 p-1">
-            <span>
+            <span className=" bg-red-400 rounded-md">
               <img
                 className="w-[30px] h-[30px] rounded-full"
                 src={
@@ -54,7 +54,7 @@ export default function NavBar() {
                 }
               />
             </span>
-            <span className="font-bold hover:text-red-700">माँ दुर्गा</span>
+            <span className="font-bold hover:text-red-700">दुर्गौली</span>
           </div>
         </Link>
         <div className="hidden md:block">
@@ -90,7 +90,7 @@ export default function NavBar() {
                   <Link href={"/"} onClick={toggleMenu}>
                     {" "}
                     <div className="inline-flex items-center space-x-2">
-                      <span>
+                      <span className="bg-red-400 rounded-md">
                         <img
                           className="w-[30px] h-[30px] rounded-full"
                           src={
@@ -98,7 +98,7 @@ export default function NavBar() {
                           }
                         />
                       </span>
-                      <span className="font-bold">माँ दुर्गा</span>
+                      <span className="font-bold">दुर्गौली</span>
                     </div>
                   </Link>
                   <div className="-mr-2">

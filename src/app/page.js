@@ -166,7 +166,7 @@ export default function Home() {
         </table>
       </div>
       {/*** sanskarti karykaram ***/}
-      <div>
+      {/* <div>
         <h1 className=" md:text-2xl lg:text-3xl font-bold text-red-500 p-2  text-center">
           सांस्कृतिक कार्यक्रम (मनोरंजन)
         </h1>
@@ -192,7 +192,7 @@ export default function Home() {
             })}
           </tbody>
         </table>
-      </div>
+      </div> */}
     </div>
   );
 }
