@@ -1,5 +1,6 @@
 /** @format */
 "use client";
+import MouseLoadar from "@/components/Loadars/MouseLoadar/MouseLoadar";
 import Advisory from "@/components/PujaSamiti/Advisory";
 import Announcer from "@/components/PujaSamiti/Announcer";
 import Auditor from "@/components/PujaSamiti/Auditor";
@@ -54,9 +55,7 @@ export default function About() {
   }, []);
 
   return isLoading ? (
-    <div className="flex justify-center items-center text-center h-screen">
-      <Loader className="motion-safe:animate-spin text-gray-500 " size={100} />
-    </div>
+    <MouseLoadar />
   ) : (
     <div>
       <div className="my-2 lg:my-4  p-2 lg:p-4 bg-red-200 rounded-lg">

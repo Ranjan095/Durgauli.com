@@ -3,6 +3,7 @@
 import AddWorkerModal from "@/components/Admin/AddWorkerModal/AddWorkerModal";
 import DeleteWorker from "@/components/Admin/DeleteWorker/DeleteWorker";
 import EditWorker from "@/components/Admin/EditWorker/EditWorker";
+import BookLoading from "@/components/Loadars/BookLoading/BookLoading";
 import { RefreshContext } from "@/context/refreshContext/refreshContex";
 
 import {
@@ -61,9 +62,7 @@ const Dashbord = () => {
   }, [refresh]);
 
   return isLoading ? (
-    <div className="flex justify-center items-center text-center h-screen">
-      <Loader className="motion-safe:animate-spin text-gray-500 " size={100} />
-    </div>
+    <BookLoading />
   ) : (
     <div>
       <div className="flex flex-wrap justify-end p-3 sticky top-12">
